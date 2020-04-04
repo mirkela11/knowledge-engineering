@@ -28,6 +28,8 @@ age(betsy,56).
 age(diana,15).
 age(jane,33).
 
+children(jane, 3).
+
 child(X) :- 
     age(X,Y),
     Y=<12.
@@ -89,7 +91,7 @@ disease_history(charlie, []).
 disease_history(dan, [bladder_cancer, bladder_prolapse]).
 disease_history(edward, []).
 disease_history(john, [bladder_cancer, prostate_cancer]).
-disease_history(alice, []).
+disease_history(alice, [gastric_bypass]).
 disease_history(betsy, [kidney_stones]).
 disease_history(diana, [kidney_cancer, prostatitis]).
 disease_history(jane, [prostate_cancer, non_muscle_invasive_bladder_cancer]).
