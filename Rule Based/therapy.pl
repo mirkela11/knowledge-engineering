@@ -81,5 +81,23 @@ testosterone_tablets(X) :- male(X), (adult(X);elder(X)), low_testosterone(X).
 testosterone_injection(X) :- male(X), (adult(X);elder(X)), low_testosterone(X). 
 testosterone_pellets(X) :- male(X), (adult(X);elder(X)), low_testosterone(X). 
 
+%Kidney Stones
+wait_for_stones_to_pass_itself(X) :- stone_in_kidney(X,Y),Y=yes, stone_size(X,Y),Y=small, kidney_is_functional(X,Y), Y=yes.
+drink_lot_of_water(X) :- stone_in_kidney(X,Y),Y=yes, stone_size(X,Y),Y=small, kidney_is_functional(X,Y), Y=yes.
+tamsulosin(X) :- stone_in_kidney(X,Y),Y=yes, stone_size(X,Y),Y=small, kidney_is_functional(X,Y), Y=yes.
+shock_wave_lithotripsy(X) :- stone_in_kidney(X,Y),Y=yes, stone_size(X,Y), (Y=small;Y=medium),stone_hardness(X,Y),Y=not_hard,kidney_is_functional(X,Y), Y=no.
+ureteroscopy(X) :- stone_in_kidney(X,Y),Y=yes, stone_size(X,Y), (Y=medium;Y=large),stone_hardness(X,Y),Y=hard, kidney_is_functional(X,Y), Y=no.
+percutaneous_nephrolithotomy(X) :- stone_in_kidney(X,Y),Y=yes, stone_size(X,Y), Y=large, stone_hardness(X,Y),Y=hard, kidney_is_functional(X,Y), Y=no.
+
+%Kidney Cancer
+radiofrequency_ablatation(X) :- renal_stage_1(X).
+cryoablatation(X) :- renal_stage_1(X).
+radical_nephrectomy(X) :- health(X,Y),Y=godd, (renal_stage_1(X);renal_stage_2(X);renal_stage_3(X);renal_stage_4(X)).
+partial_nephrectomy(X) :- renal_stage_1(X);renal_stage_2(X).
+radiation_therapy(X) :- health(X,Y),Y=not_good, (renal_stage_1(X);renal_stage_2(X);renal_stage_3(X);renal_stage_4(X)).
+arterial_embolazation(X) :- renal_stage_1(X);renal_stage_2(X);renal_stage_3(X).
+targeted_therapy(X) :- renal_stage_4(X).
+biologic_therapy(X) :- renal_stage_4(X).
+
 
 
