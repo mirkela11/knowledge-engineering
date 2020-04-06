@@ -1,59 +1,4 @@
-%Prostate cancer
-male(john).
-female(alice).
-gleason_score(john, 6).
-age(john, 58).
-
-child(X) :- 
-    age(X,Y),
-    Y=<12.
-adolescent(X) :- 
-    age(X,Y),
-    Y=<19,
-    Y>=13.
-adult(X) :- 
-    age(X,Y), 
-    Y<55, Y>=20.
-elder(X) :- 
-    age(X,Y), 
-    Y>=55.
-
-disease(X, Z).
-
-anamnesis(X) :- 
-    disease(X, Y),
-    anamnesis(X).
-
-physical_examinations(X) :- 
-    physical_examination(X),
-    physical_examinations(X).
-
-physical_examination(X) :- 
-    temperature(X, T), 
-    blood_preasure(X, B), 
-    pulse(X, P), 
-    respiratory_rate(X, R).
-
-supplementary_testing(X, Y).
-
-supplementary_testings(X) :- 
-    supplementary_testing(X, Y),
-    supplementary_testings(X).
-
-all_diagnosis(X) :-
-    diagnosis(Y),
-    all_diagnosis(X).
-
-medical_record(X) :-
-    anamnesis(X),
-    physical_examinations(X),
-    supplementary_testings(X),
-    all_diagnosis(X).
-
-
-
 % ============================= cinjenice ========================================
-
 % psa test moze imati visoke vrijednosti psa ili niske, ali nema univerzalne tabele
 % rezultatu dre testa su od doktora, ako ima nabubrina ili tvrdoce
 
@@ -67,19 +12,41 @@ biopsy(john, prostate_cancer, 9).
 % opciono RTG pluca
 
 urology_examination(john, good).
+urology_examination(betsy, bad).
+
 ultrasound(john, good).
+ultrasound(betsy, bad).
+
 biopsy(john, bladder_cancer, 5).
+biopsy(betsy, bladder_cancer, 1).
 
 % slicni su pregledi kao i za mokracni
 % ultrasound abdomena, MR ili CT grudnog kosa
 ct_scan(john, good).
+ct_scan(edward, bad).
+
 mr_scan(john, good).
+mr_scan(bob, good).
+
 biopsy(john, kindey_cancer, 5).
 
 urine_cytology(john, good).
+urine_cytology(albert, good).
+
 urin_sample(john, good).
+urin_sample(albert, bad).
+
 testosterone_level(john, good).
-x_rays(john, good).
+testosterone_level(bob, good).
+
+x_rays(edward, good).
+x_rays(john, bad).
+
+gleason_score(john, 6).
+gleason_score(betsy, 9).
+gleason_score(edward, 5).
+gleason_score(bob, 2).
+gleason_score(albert, 7).
 
 % ============================ dijagnoze/pravila ===================================
 
@@ -92,8 +59,8 @@ x_rays(john, good).
 % dijagnoza se radi na osnovu rezultata psa i dre (sam dre nije dovoljan) ili biopsije
 % ==================================================================================
 diagnosis(X, prostate_cancer) :- 
-    psa_test(X, P), P = high,
-    dre_test(X, D), D = good,
+    psa_test(X, P), P = high;
+    dre_test(X, D), D = bad;
     biopsy(X, prostate_cancer, B), B > 7.
 
 % BLADDER CANCER
@@ -205,6 +172,7 @@ diagnosis(X, kidney_stones) :-
 % only women can have it
 % can be found with dinical history and pelvic exam
 % other exams(cystoscopy, urodynamics, x-rays, ultrasound, mri)
+% ==============================================================================
 diganosis(X, bladder_prolapse) :-
     pelvic_exam(X, P), p = bad,
     female(X).
@@ -222,7 +190,8 @@ diganosis(X, bladder_prolapse) :-
 %   - blue light cystocopy
 % for staging and diagnosys:
 %   - mri
-%   - retrograde pyelogram
+%   - retrograde pyelogram\
+% ==============================================================================
 diagnose(X, non_muscle_invasive_bladder_cancer) :-
     urine_cytology(X, U), U = bad,
     cystoscopy(X, C), U = bad.
