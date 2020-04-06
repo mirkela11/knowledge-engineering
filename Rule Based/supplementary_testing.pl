@@ -1,22 +1,22 @@
-import('persons.pl').
-import('symptoms/pl').
+import('people.pl').
+import('symptoms.pl').
 
 % X - patient; Y - list of symptoms
 % TODO: update patient stuff
 
 % urine cytology
 supplementary_test(X, urine_cytology) :- 
-   bladder_cancer_symptom(Y),
+   non_muscle_invasive_bladder_cancer_symptom(Y),
    member(Y, X).
 
 % cmp
 supplementary_test(X, cmp) :-
-   bladder_cancer_symptom(Y),
+   non_muscle_invasive_bladder_cancer_symptom(Y),
    member(Y, X).
 
 % cat scan
 supplementary_test(X, cat_scan) :-
-   bladder_cancer_symptom(Y),
+   non_muscle_invasive_bladder_cancer_symptom(Y),
    member(Y, X).
 
 supplementary_test(X, cat_scan) :-
@@ -29,16 +29,20 @@ supplementary_test(X, cat_scan) :-
 
 % cystoscopy
 supplementary_test(X, cystoscopy) :-
-   bladder_cancer_symptom(Y),
+   non_muscle_invasive_bladder_cancer_symptom(Y),
    member(Y, X).
 
 supplementary_test(X, cystoscopy) :-
    bladder_prolapse_symptom(Y),
    member(Y, X).
 
+supplementary_test(X, cystoscopy) :-
+   prostatitis_symptom(Y),
+   member(Y, X).
+
 % rigid cystoscopy
 supplementary_test(X, rigid_cystoscopy) :-
-   bladder_cancer_symptom(Y),
+   non_muscle_invasive_bladder_cancer_symptom(Y),
    member(Y, X).
 
 % psa
@@ -66,6 +70,10 @@ supplementary_test(X, urodynamics) :-
    bladder_prolapse_symptom(Y),
    member(Y, X).
 
+supplementary_test(X, urodynamics) :-
+   prostatitis_symptom(Y),
+   member(Y, X).
+
 % urinalysis
 supplementary_test(X, urinalysis) :-
    kidney_cancer_symptom(Y),
@@ -73,6 +81,10 @@ supplementary_test(X, urinalysis) :-
 
 supplementary_test(X, urinalysis) :-
    urinary_tract_infections_symptom(Y),
+   member(Y, X).
+
+supplementary_test(X, urinalysis) :-
+   prostatitis_symptom(Y),
    member(Y, X).
 
 % liver function test
@@ -107,6 +119,10 @@ supplementary_test(X, ultrasound) :-
    kidney_cancer_symptom(Y),
    member(Y, X).
 
+supplementary_test(X, ultrasound) :-
+   prostatitis_symptom(Y),
+   member(Y, X).
+
 % mri
 supplementary_test(X, mri) :-
    bladder_prolapse_symptom(Y),
@@ -123,6 +139,10 @@ supplementary_test(X, physical_exam) :-
 
 supplementary_test(X, physical_exam) :-
    kidney_cancer_symptom(Y),
+   member(Y, X).
+
+supplementary_test(X, physical_exam) :-
+   prostatitis_symptom(Y),
    member(Y, X).
 
 % other blood tests
