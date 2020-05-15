@@ -1,0 +1,10 @@
+#potential disease;tests
+prostate_cancer;psa,dre
+advanced_prostate_cancer;prostate_biopsy
+non_muscle_invasive_bladder_cancer;urine_cytology,cmp,cat_scan,cystoscopy,rigid_cystoscopy
+bladder_prolapse;cystoscopy,urodynamics,x_rays,ultrasound,mri
+low_testosterone;physical_exam,blood_test_testosterone_level,blood_test_lh,blood_test_prolactin_level,blood_test_hemoglobin
+kidney_cancer;cat_scan,kidney_biopsy,urinalysis,liver_function_test,ivp,ultrasound,mri,physical_exam,blood_test_chemistry
+kidney_stones;cat_scan,x_rays,ultrasound
+urinary_tract_infections;urinalysis
+prostatitis;cystoscopy,urodynamics,urinalysis,ultrasound,physical_exam
