@@ -1,0 +1,416 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="https://github.com/Lupus7/knowledge-engineering/urology#"
+     xml:base="https://github.com/Lupus7/knowledge-engineering/urology"
+     xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:OBI="http://obi.sourceforge.net/ontology/OBI.owl#"
+     xmlns:cpr="http://purl.org/cpr/0.75#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:foaf="http://xmlns.com/foaf/0.1/"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+     xmlns:terms="http://purl.org/dc/terms/"
+     xmlns:DOLCE-Lite="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#">
+    <owl:Ontology rdf:about="https://github.com/Lupus7/knowledge-engineering/urology">
+        <owl:imports rdf:resource="http://purl.org/cpr/0.5"/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://purl.org/dc/elements/1.1/description -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/elements/1.1/description"/>
+    
+
+
+    <!-- http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#participant -->
+
+    <owl:AnnotationProperty rdf:about="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#participant">
+        <rdfs:range rdf:resource="http://purl.org/cpr/0.5#diagnostic-act"/>
+    </owl:AnnotationProperty>
+    
+
+
+    <!-- http://www.w3.org/2001/XMLSchema#pattern -->
+
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/2001/XMLSchema#pattern"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://purl.org/cpr/0.75#hasHad -->
+
+    <owl:ObjectProperty rdf:about="http://purl.org/cpr/0.75#hasHad">
+        <rdfs:domain rdf:resource="http://www.co-ode.org/ontologies/galen#Diagnosis"/>
+        <rdfs:domain rdf:resource="http://www.co-ode.org/ontologies/galen#Patient"/>
+        <rdfs:range rdf:resource="http://purl.org/cpr/0.5#medical-history-screening-act"/>
+        <rdfs:range rdf:resource="http://www.co-ode.org/ontologies/galen#Diagnosis"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#participant -->
+
+    <owl:ObjectProperty rdf:about="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#participant">
+        <rdfs:domain rdf:resource="http://www.co-ode.org/ontologies/galen#Patient"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://purl.org/cpr/0.75#bladderBiopsy -->
+
+    <owl:DatatypeProperty rdf:about="http://purl.org/cpr/0.75#bladderBiopsy">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain rdf:resource="http://www.co-ode.org/ontologies/galen#Diagnosis"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://purl.org/cpr/0.75#bladderUltrasound -->
+
+    <owl:DatatypeProperty rdf:about="http://purl.org/cpr/0.75#bladderUltrasound">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://purl.org/cpr/0.75#cystoscopy -->
+
+    <owl:DatatypeProperty rdf:about="http://purl.org/cpr/0.75#cystoscopy">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain rdf:resource="http://www.co-ode.org/ontologies/galen#Diagnosis"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <dc:description>Your doctor might be able to discuss the results immediately after your procedure.
+
+Or, your doctor might need to wait to discuss the results at a follow-up appointment. If your cystoscopy involved collecting a biopsy to test for bladder cancer, that sample will be sent to a lab. When the tests are complete, your doctor will let you know the results.</dc:description>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://purl.org/cpr/0.75#dreTest -->
+
+    <owl:DatatypeProperty rdf:about="http://purl.org/cpr/0.75#dreTest">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain rdf:resource="http://www.co-ode.org/ontologies/galen#Diagnosis"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://purl.org/cpr/0.75#kidneyBiopsy -->
+
+    <owl:DatatypeProperty rdf:about="http://purl.org/cpr/0.75#kidneyBiopsy">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain rdf:resource="http://www.co-ode.org/ontologies/galen#Diagnosis"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://purl.org/cpr/0.75#kidneyCTscan -->
+
+    <owl:DatatypeProperty rdf:about="http://purl.org/cpr/0.75#kidneyCTscan">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain rdf:resource="http://www.co-ode.org/ontologies/galen#Diagnosis"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://purl.org/cpr/0.75#kidneyUltrasound -->
+
+    <owl:DatatypeProperty rdf:about="http://purl.org/cpr/0.75#kidneyUltrasound">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain rdf:resource="http://www.co-ode.org/ontologies/galen#Diagnosis"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://purl.org/cpr/0.75#kidneyXrays -->
+
+    <owl:DatatypeProperty rdf:about="http://purl.org/cpr/0.75#kidneyXrays">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain rdf:resource="http://www.co-ode.org/ontologies/galen#Diagnosis"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://purl.org/cpr/0.75#pelvicExam -->
+
+    <owl:DatatypeProperty rdf:about="http://purl.org/cpr/0.75#pelvicExam">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain rdf:resource="http://www.co-ode.org/ontologies/galen#Diagnosis"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://purl.org/cpr/0.75#prostateBiopsy -->
+
+    <owl:DatatypeProperty rdf:about="http://purl.org/cpr/0.75#prostateBiopsy">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain rdf:resource="http://www.co-ode.org/ontologies/galen#Diagnosis"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://purl.org/cpr/0.75#prostateUltrasound -->
+
+    <owl:DatatypeProperty rdf:about="http://purl.org/cpr/0.75#prostateUltrasound">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain rdf:resource="http://www.co-ode.org/ontologies/galen#Diagnosis"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://purl.org/cpr/0.75#psaTest -->
+
+    <owl:DatatypeProperty rdf:about="http://purl.org/cpr/0.75#psaTest">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain rdf:resource="http://www.co-ode.org/ontologies/galen#Diagnosis"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://purl.org/cpr/0.75#testosteroneLevel -->
+
+    <owl:DatatypeProperty rdf:about="http://purl.org/cpr/0.75#testosteroneLevel">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain rdf:resource="http://www.co-ode.org/ontologies/galen#Diagnosis"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://purl.org/cpr/0.75#urinSample -->
+
+    <owl:DatatypeProperty rdf:about="http://purl.org/cpr/0.75#urinSample">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain rdf:resource="http://www.co-ode.org/ontologies/galen#Diagnosis"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://purl.org/cpr/0.75#urineCytology -->
+
+    <owl:DatatypeProperty rdf:about="http://purl.org/cpr/0.75#urineCytology">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain rdf:resource="http://www.co-ode.org/ontologies/galen#Diagnosis"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <dc:description>Different labs have different ways of describing the results of a urine cytology test. Some common words used in pathology reports include:
+
+Unsatisfactory specimen. This can mean that not enough cells or the wrong types of cells were found in your urine sample. You may need to repeat the test.
+Negative. This means no cancer cells were identified in your urine sample.
+Atypical. This indicates that some abnormalities were found in your urine sample cells, but they weren&apos;t abnormal enough to be considered cancer.
+Suspicious. The urine cells were abnormal and might be cancerous.
+Positive. A positive result indicates that cancer cells were found in your urine.</dc:description>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://purl.org/cpr/0.75#urologyExamResult -->
+
+    <owl:DatatypeProperty rdf:about="http://purl.org/cpr/0.75#urologyExamResult">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain rdf:resource="http://www.co-ode.org/ontologies/galen#Diagnosis"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://purl.org/cpr/0.5#clinical-examination -->
+
+    <owl:Class rdf:about="http://purl.org/cpr/0.5#clinical-examination"/>
+    
+
+
+    <!-- http://purl.org/cpr/0.5#diagnostic-act -->
+
+    <owl:Class rdf:about="http://purl.org/cpr/0.5#diagnostic-act"/>
+    
+
+
+    <!-- http://purl.org/cpr/0.5#laboratory-test -->
+
+    <owl:Class rdf:about="http://purl.org/cpr/0.5#laboratory-test"/>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/galen#Diagnosis -->
+
+    <owl:Class rdf:about="http://www.co-ode.org/ontologies/galen#Diagnosis"/>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/galen#Patient -->
+
+    <owl:Class rdf:about="http://www.co-ode.org/ontologies/galen#Patient"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://purl.org/cpr/0.75#AdvancedProstateCancer -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/cpr/0.75#AdvancedProstateCancer">
+        <rdf:type rdf:resource="http://www.co-ode.org/ontologies/galen#Diagnosis"/>
+        <cpr:prostateBiopsy rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">9</cpr:prostateBiopsy>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/cpr/0.75#BladderCancer -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/cpr/0.75#BladderCancer">
+        <rdf:type rdf:resource="http://www.co-ode.org/ontologies/galen#Diagnosis"/>
+        <cpr:bladderBiopsy rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">7</cpr:bladderBiopsy>
+        <cpr:bladderUltrasound>BAD</cpr:bladderUltrasound>
+        <cpr:urologyExamResult>BAD</cpr:urologyExamResult>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/cpr/0.75#BladderProlapse -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/cpr/0.75#BladderProlapse">
+        <rdf:type rdf:resource="http://www.co-ode.org/ontologies/galen#Diagnosis"/>
+        <cpr:pelvicExam>BAD</cpr:pelvicExam>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/cpr/0.75#KidneyCancer -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/cpr/0.75#KidneyCancer">
+        <rdf:type rdf:resource="http://www.co-ode.org/ontologies/galen#Diagnosis"/>
+        <cpr:kidneyBiopsy rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">7</cpr:kidneyBiopsy>
+        <cpr:kidneyUltrasound>BAD</cpr:kidneyUltrasound>
+        <cpr:urologyExamResult>BAD</cpr:urologyExamResult>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/cpr/0.75#KidneyStones -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/cpr/0.75#KidneyStones">
+        <rdf:type rdf:resource="http://www.co-ode.org/ontologies/galen#Diagnosis"/>
+        <cpr:kidneyCTscan>BAD</cpr:kidneyCTscan>
+        <cpr:kidneyXrays>BAD</cpr:kidneyXrays>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/cpr/0.75#LowTestosterone -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/cpr/0.75#LowTestosterone">
+        <rdf:type rdf:resource="http://www.co-ode.org/ontologies/galen#Diagnosis"/>
+        <cpr:hasHad rdf:resource="http://purl.org/cpr/0.75#LowTestosterone"/>
+        <cpr:testosteroneLevel>LOW</cpr:testosteroneLevel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/cpr/0.75#NonMuscleInvasiveBladderCancer -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/cpr/0.75#NonMuscleInvasiveBladderCancer">
+        <rdf:type rdf:resource="http://www.co-ode.org/ontologies/galen#Diagnosis"/>
+        <cpr:cystoscopy>BAD</cpr:cystoscopy>
+        <cpr:urineCytology>BAD</cpr:urineCytology>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/cpr/0.75#ProstateCancer -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/cpr/0.75#ProstateCancer">
+        <rdf:type rdf:resource="http://www.co-ode.org/ontologies/galen#Diagnosis"/>
+        <cpr:dreTest>BAD</cpr:dreTest>
+        <cpr:prostateBiopsy rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">7</cpr:prostateBiopsy>
+        <cpr:psaTest>HIGH</cpr:psaTest>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/cpr/0.75#Prostatitis -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/cpr/0.75#Prostatitis">
+        <rdf:type rdf:resource="http://www.co-ode.org/ontologies/galen#Diagnosis"/>
+        <cpr:dreTest>BAD</cpr:dreTest>
+        <cpr:prostateUltrasound>BAD</cpr:prostateUltrasound>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://purl.org/cpr/0.75#UrinaryTractInfections -->
+
+    <owl:NamedIndividual rdf:about="http://purl.org/cpr/0.75#UrinaryTractInfections">
+        <rdf:type rdf:resource="http://www.co-ode.org/ontologies/galen#Diagnosis"/>
+        <cpr:urinSample>BAD</cpr:urinSample>
+    </owl:NamedIndividual>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
+
