@@ -144,4 +144,9 @@ public class BladderDescription implements CaseComponent {
     public Attribute getIdAttribute() {
         return null;
     }
+
+    @Override
+    public String toString() {
+        return diagnosis;
+    }
 }

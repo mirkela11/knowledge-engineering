@@ -91,4 +91,8 @@ public class ProstateDescription implements CaseComponent {
         return null;
     }
 
+    @Override
+    public String toString() {
+        return diagnosis;
+    }
 }

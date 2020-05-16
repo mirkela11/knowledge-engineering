@@ -10,7 +10,6 @@ public class DiagnosisDescription implements CaseComponent {
     private String bloodTestTestosteroneLevel;
     private String bloodTestLh;
     private String bloodTestProlactinLevel;
-    private String bloodTestHemoglobin;
 
     public String getDiagnosis() {
         return diagnosis;
@@ -60,16 +59,13 @@ public class DiagnosisDescription implements CaseComponent {
         this.bloodTestProlactinLevel = bloodTestProlactinLevel;
     }
 
-    public String getBloodTestHemoglobin() {
-        return bloodTestHemoglobin;
-    }
-
-    public void setBloodTestHemoglobin(String bloodTestHemoglobin) {
-        this.bloodTestHemoglobin = bloodTestHemoglobin;
-    }
-
     @Override
     public Attribute getIdAttribute() {
         return null;
+    }
+
+    @Override
+    public String toString() {
+        return diagnosis;
     }
 }
