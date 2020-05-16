@@ -1,0 +1,3 @@
+# disease, psa, dre, prostate_biopsy, cystoscopy, urodynacmi
+prostate_cancer;psa,dre
+advanced_prostate_cancer;prostate_biopsy
