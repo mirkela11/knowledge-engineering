@@ -1,8 +1,7 @@
 package cbr;
 
-import connector.CsvSymptomTestConnector;
-import model.SymptomTestDescription;
-import similarity.ListTableSimilarity;
+import connector.CsvDiagnosisConnector;
+import model.diagnosis.DiagnosisDescription;
 import ucm.gaia.jcolibri.casebase.LinealCaseBase;
 import ucm.gaia.jcolibri.cbraplications.StandardCBRApplication;
 import ucm.gaia.jcolibri.cbrcore.*;
@@ -10,13 +9,13 @@ import ucm.gaia.jcolibri.exception.ExecutionException;
 import ucm.gaia.jcolibri.method.retrieve.NNretrieval.NNConfig;
 import ucm.gaia.jcolibri.method.retrieve.NNretrieval.NNScoringMethod;
 import ucm.gaia.jcolibri.method.retrieve.NNretrieval.similarity.global.Average;
+import ucm.gaia.jcolibri.method.retrieve.NNretrieval.similarity.local.MaxString;
 import ucm.gaia.jcolibri.method.retrieve.RetrievalResult;
 import ucm.gaia.jcolibri.method.retrieve.selection.SelectCases;
 
 import java.util.Collection;
-import java.util.List;
 
-public class DiagnosisCbrApplication {
+public class DiagnosisCbrApplication implements StandardCBRApplication {
 
     Connector _connector;  /** Connector object */
     CBRCaseBase _caseBase;  /** CaseBase object */
@@ -24,16 +23,19 @@ public class DiagnosisCbrApplication {
     NNConfig simConfig;  /** KNN configuration */
 
     public void configure() throws ExecutionException {
-        _connector =  new CsvSymptomTestConnector();
+        _connector =  new CsvDiagnosisConnector();
 
         _caseBase = new LinealCaseBase();  // Create a Lineal case base for in-memory organization
 
         simConfig = new NNConfig(); // KNN configuration
         simConfig.setDescriptionSimFunction(new Average());  // global similarity function = average
 
-        // simConfig.addMapping(new Attribute("attribute", CaseDescription.class), new Interval(5));
+        simConfig.addMapping(new Attribute("urinalysis", DiagnosisDescription.class), new MaxString());
+//        simConfig.addMapping(new Attribute("physicalExam", DiagnosisDescription.class), new MaxString());
+//        simConfig.addMapping(new Attribute("bloodTestTestosteroneLevel", DiagnosisDescription.class), new MaxString());
+//        simConfig.addMapping(new Attribute("bloodTestLh", DiagnosisDescription.class), new MaxString());
+//        simConfig.addMapping(new Attribute("bloodTestProlactinLevel", DiagnosisDescription.class), new MaxString());
 
-        simConfig.addMapping(new Attribute("symptoms", SymptomTestDescription.class), new ListTableSimilarity());
     }
 
     public void cycle(CBRQuery query) throws ExecutionException {
@@ -56,8 +58,8 @@ public class DiagnosisCbrApplication {
         return _caseBase;
     }
 
-    public void run(List<String> symptoms) {
-        StandardCBRApplication recommender = new SuppTestCbrApplication();
+    public void run(String urinalysis) {
+        StandardCBRApplication recommender = new DiagnosisCbrApplication();
         try {
             recommender.configure();
 
@@ -65,11 +67,11 @@ public class DiagnosisCbrApplication {
 
             CBRQuery query = new CBRQuery();
 
-            SymptomTestDescription stDescription = new SymptomTestDescription();
+            DiagnosisDescription diagnosisDescription = new DiagnosisDescription();
 
-            stDescription.setSymptoms(symptoms);
+            diagnosisDescription.setUrinalysis(urinalysis);
 
-            query.setDescription( stDescription );
+            query.setDescription( diagnosisDescription );
 
             recommender.cycle(query);
 

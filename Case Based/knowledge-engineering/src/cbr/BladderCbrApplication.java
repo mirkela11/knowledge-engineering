@@ -1,8 +1,7 @@
 package cbr;
 
-import connector.CsvSymptomTestConnector;
-import model.SymptomTestDescription;
-import similarity.ListTableSimilarity;
+import connector.CsvBladderConnector;
+import model.diagnosis.BladderDescription;
 import ucm.gaia.jcolibri.casebase.LinealCaseBase;
 import ucm.gaia.jcolibri.cbraplications.StandardCBRApplication;
 import ucm.gaia.jcolibri.cbrcore.*;
@@ -10,11 +9,11 @@ import ucm.gaia.jcolibri.exception.ExecutionException;
 import ucm.gaia.jcolibri.method.retrieve.NNretrieval.NNConfig;
 import ucm.gaia.jcolibri.method.retrieve.NNretrieval.NNScoringMethod;
 import ucm.gaia.jcolibri.method.retrieve.NNretrieval.similarity.global.Average;
+import ucm.gaia.jcolibri.method.retrieve.NNretrieval.similarity.local.MaxString;
 import ucm.gaia.jcolibri.method.retrieve.RetrievalResult;
 import ucm.gaia.jcolibri.method.retrieve.selection.SelectCases;
 
 import java.util.Collection;
-import java.util.List;
 
 public class
 BladderCbrApplication implements StandardCBRApplication {
@@ -24,16 +23,29 @@ BladderCbrApplication implements StandardCBRApplication {
     NNConfig simConfig;  /** KNN configuration */
 
     public void configure() throws ExecutionException {
-        _connector =  new CsvSymptomTestConnector();
+        _connector =  new CsvBladderConnector();
 
         _caseBase = new LinealCaseBase();  // Create a Lineal case base for in-memory organization
 
         simConfig = new NNConfig(); // KNN configuration
         simConfig.setDescriptionSimFunction(new Average());  // global similarity function = average
 
-        // simConfig.addMapping(new Attribute("attribute", CaseDescription.class), new Interval(5));
+        simConfig.addMapping(new Attribute("urologyExamination", BladderDescription.class), new MaxString());
+//        simConfig.addMapping(new Attribute("bladderBiopsy", BladderDescription.class), new MaxString());
+//        simConfig.addMapping(new Attribute("liverFunctionTest", BladderDescription.class), new MaxString());
+//        simConfig.addMapping(new Attribute("ivp", BladderDescription.class), new MaxString());
+//        simConfig.addMapping(new Attribute("physicalExam", BladderDescription.class), new MaxString());
+//        simConfig.addMapping(new Attribute("bloodTestChemistry", BladderDescription.class), new MaxString());
+//        simConfig.addMapping(new Attribute("urodynamics", BladderDescription.class), new MaxString());
+//        simConfig.addMapping(new Attribute("cystoscopy", BladderDescription.class), new MaxString());
+//        simConfig.addMapping(new Attribute("xRays", BladderDescription.class), new MaxString());
+//        simConfig.addMapping(new Attribute("ultrasound", BladderDescription.class), new MaxString());
+//        simConfig.addMapping(new Attribute("mri", BladderDescription.class), new MaxString());
+//        simConfig.addMapping(new Attribute("urineCytology", BladderDescription.class), new MaxString());
+//        simConfig.addMapping(new Attribute("catScan", BladderDescription.class), new MaxString());
+//        simConfig.addMapping(new Attribute("rigidCystoscopy", BladderDescription.class), new MaxString());
 
-        simConfig.addMapping(new Attribute("symptoms", SymptomTestDescription.class), new ListTableSimilarity());
+        // simConfig.addMapping(new Attribute("attribute", CaseDescription.class), new Interval(5));
     }
 
     public void cycle(CBRQuery query) throws ExecutionException {
@@ -56,8 +68,8 @@ BladderCbrApplication implements StandardCBRApplication {
         return _caseBase;
     }
 
-    public void run(List<String> symptoms) {
-        StandardCBRApplication recommender = new SuppTestCbrApplication();
+    public void run(String urologyExam) {
+        StandardCBRApplication recommender = new BladderCbrApplication();
         try {
             recommender.configure();
 
@@ -65,11 +77,11 @@ BladderCbrApplication implements StandardCBRApplication {
 
             CBRQuery query = new CBRQuery();
 
-            SymptomTestDescription stDescription = new SymptomTestDescription();
+            BladderDescription bladderDescription = new BladderDescription();
 
-            stDescription.setSymptoms(symptoms);
+            bladderDescription.setUrologyExamination(urologyExam);
 
-            query.setDescription( stDescription );
+            query.setDescription( bladderDescription );
 
             recommender.cycle(query);
 

@@ -1,8 +1,7 @@
 package cbr;
 
-import connector.CsvSymptomTestConnector;
-import model.SymptomTestDescription;
-import similarity.ListTableSimilarity;
+import connector.CsvProstateConnector;
+import model.diagnosis.ProstateDescription;
 import ucm.gaia.jcolibri.casebase.LinealCaseBase;
 import ucm.gaia.jcolibri.cbraplications.StandardCBRApplication;
 import ucm.gaia.jcolibri.cbrcore.*;
@@ -10,11 +9,11 @@ import ucm.gaia.jcolibri.exception.ExecutionException;
 import ucm.gaia.jcolibri.method.retrieve.NNretrieval.NNConfig;
 import ucm.gaia.jcolibri.method.retrieve.NNretrieval.NNScoringMethod;
 import ucm.gaia.jcolibri.method.retrieve.NNretrieval.similarity.global.Average;
+import ucm.gaia.jcolibri.method.retrieve.NNretrieval.similarity.local.MaxString;
 import ucm.gaia.jcolibri.method.retrieve.RetrievalResult;
 import ucm.gaia.jcolibri.method.retrieve.selection.SelectCases;
 
 import java.util.Collection;
-import java.util.List;
 
 public class ProstateCbrApplication implements StandardCBRApplication {
     Connector _connector;  /** Connector object */
@@ -23,17 +22,23 @@ public class ProstateCbrApplication implements StandardCBRApplication {
     NNConfig simConfig;  /** KNN configuration */
 
     public void configure() throws ExecutionException {
-        _connector =  new CsvSymptomTestConnector();
+        _connector =  new CsvProstateConnector();
 
         _caseBase = new LinealCaseBase();  // Create a Lineal case base for in-memory organization
 
         simConfig = new NNConfig(); // KNN configuration
         simConfig.setDescriptionSimFunction(new Average());  // global similarity function = average
+        simConfig.addMapping(new Attribute("psaTest", ProstateDescription.class), new MaxString());
+        simConfig.addMapping(new Attribute("dreTest", ProstateDescription.class), new MaxString());
+//        simConfig.addMapping(new Attribute("prostateBiopsy", ProstateDescription.class), new MaxString());
+//        simConfig.addMapping(new Attribute("cystoscopy", ProstateDescription.class), new MaxString());
+//        simConfig.addMapping(new Attribute("urodynamics", ProstateDescription.class), new MaxString());
+//        simConfig.addMapping(new Attribute("urinalysis", ProstateDescription.class), new MaxString());
+//        simConfig.addMapping(new Attribute("ultrasound", ProstateDescription.class), new MaxString());
+//        simConfig.addMapping(new Attribute("ctScan", ProstateDescription.class), new MaxString());
 
         // simConfig.addMapping(new Attribute("attribute", CaseDescription.class), new Interval(5));
-
-        simConfig.addMapping(new Attribute("symptoms", SymptomTestDescription.class), new ListTableSimilarity());
-    }
+}
 
     public void cycle(CBRQuery query) throws ExecutionException {
         Collection<RetrievalResult> eval = NNScoringMethod.evaluateSimilarity(_caseBase.getCases(), query, simConfig);
@@ -55,8 +60,8 @@ public class ProstateCbrApplication implements StandardCBRApplication {
         return _caseBase;
     }
 
-    public void run(List<String> symptoms) {
-        StandardCBRApplication recommender = new SuppTestCbrApplication();
+    public void run(String psa, String dre) {
+        StandardCBRApplication recommender = new ProstateCbrApplication();
         try {
             recommender.configure();
 
@@ -64,11 +69,12 @@ public class ProstateCbrApplication implements StandardCBRApplication {
 
             CBRQuery query = new CBRQuery();
 
-            SymptomTestDescription stDescription = new SymptomTestDescription();
+            ProstateDescription prostateDescription = new ProstateDescription();
 
-            stDescription.setSymptoms(symptoms);
+            prostateDescription.setDreTest(dre);
+            prostateDescription.setPsaTest(psa);
 
-            query.setDescription( stDescription );
+            query.setDescription( prostateDescription );
 
             recommender.cycle(query);
 

@@ -1,8 +1,7 @@
 package cbr;
 
-import connector.CsvSymptomTestConnector;
-import model.SymptomTestDescription;
-import similarity.ListTableSimilarity;
+import connector.CsvKidneyConnector;
+import model.diagnosis.KidneyDescription;
 import ucm.gaia.jcolibri.casebase.LinealCaseBase;
 import ucm.gaia.jcolibri.cbraplications.StandardCBRApplication;
 import ucm.gaia.jcolibri.cbrcore.*;
@@ -10,11 +9,11 @@ import ucm.gaia.jcolibri.exception.ExecutionException;
 import ucm.gaia.jcolibri.method.retrieve.NNretrieval.NNConfig;
 import ucm.gaia.jcolibri.method.retrieve.NNretrieval.NNScoringMethod;
 import ucm.gaia.jcolibri.method.retrieve.NNretrieval.similarity.global.Average;
+import ucm.gaia.jcolibri.method.retrieve.NNretrieval.similarity.local.MaxString;
 import ucm.gaia.jcolibri.method.retrieve.RetrievalResult;
 import ucm.gaia.jcolibri.method.retrieve.selection.SelectCases;
 
 import java.util.Collection;
-import java.util.List;
 
 public class KidneyCbrApplication implements StandardCBRApplication {
     Connector _connector;  /** Connector object */
@@ -23,16 +22,25 @@ public class KidneyCbrApplication implements StandardCBRApplication {
     NNConfig simConfig;  /** KNN configuration */
 
     public void configure() throws ExecutionException {
-        _connector =  new CsvSymptomTestConnector();
+        _connector =  new CsvKidneyConnector();
 
         _caseBase = new LinealCaseBase();  // Create a Lineal case base for in-memory organization
 
         simConfig = new NNConfig(); // KNN configuration
         simConfig.setDescriptionSimFunction(new Average());  // global similarity function = average
 
-        // simConfig.addMapping(new Attribute("attribute", CaseDescription.class), new Interval(5));
+        simConfig.addMapping(new Attribute("catScan", KidneyDescription.class), new MaxString());
+        simConfig.addMapping(new Attribute("kidneyBiopsy", KidneyDescription.class), new MaxString());
+        simConfig.addMapping(new Attribute("urinalysis", KidneyDescription.class), new MaxString());
+        simConfig.addMapping(new Attribute("liverFunctionTest", KidneyDescription.class), new MaxString());
+        simConfig.addMapping(new Attribute("ivp", KidneyDescription.class), new MaxString());
+        simConfig.addMapping(new Attribute("ultrasound", KidneyDescription.class), new MaxString());
+        simConfig.addMapping(new Attribute("mri", KidneyDescription.class), new MaxString());
+        simConfig.addMapping(new Attribute("physicalExam", KidneyDescription.class), new MaxString());
+        simConfig.addMapping(new Attribute("bloodTestChemistry", KidneyDescription.class), new MaxString());
+        simConfig.addMapping(new Attribute("xRays", KidneyDescription.class), new MaxString());
 
-        simConfig.addMapping(new Attribute("symptoms", SymptomTestDescription.class), new ListTableSimilarity());
+        // simConfig.addMapping(new Attribute("attribute", CaseDescription.class), new Interval(5));
     }
 
     public void cycle(CBRQuery query) throws ExecutionException {
@@ -55,8 +63,8 @@ public class KidneyCbrApplication implements StandardCBRApplication {
         return _caseBase;
     }
 
-    public void run(List<String> symptoms) {
-        StandardCBRApplication recommender = new SuppTestCbrApplication();
+    public void run(String catScan) {
+        StandardCBRApplication recommender = new KidneyCbrApplication();
         try {
             recommender.configure();
 
@@ -64,11 +72,11 @@ public class KidneyCbrApplication implements StandardCBRApplication {
 
             CBRQuery query = new CBRQuery();
 
-            SymptomTestDescription stDescription = new SymptomTestDescription();
+            KidneyDescription kidneyDescription = new KidneyDescription();
 
-            stDescription.setSymptoms(symptoms);
+            kidneyDescription.setCatScan(catScan);
 
-            query.setDescription( stDescription );
+            query.setDescription( kidneyDescription );
 
             recommender.cycle(query);
 
