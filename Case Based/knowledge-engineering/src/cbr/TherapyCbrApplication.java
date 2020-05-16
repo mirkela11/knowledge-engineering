@@ -13,8 +13,7 @@ import ucm.gaia.jcolibri.method.retrieve.NNretrieval.similarity.global.Average;
 import ucm.gaia.jcolibri.method.retrieve.RetrievalResult;
 import ucm.gaia.jcolibri.method.retrieve.selection.SelectCases;
 
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 public class TherapyCbrApplication implements StandardCBRApplication {
 
@@ -62,12 +61,25 @@ public class TherapyCbrApplication implements StandardCBRApplication {
     public void cycle(CBRQuery cbrQuery) throws ExecutionException {
 
         Collection<RetrievalResult> eval = NNScoringMethod.evaluateSimilarity(_caseBase.getCases(), cbrQuery, simConfig);
-        eval = SelectCases.selectTopKRR(eval, 8);
+        eval = SelectCases.selectTopKRR(eval, 20);
         System.out.println("Retrieved cases:");
+        HashMap<String, RetrievalResult> finalResults = new HashMap<>();
         for (RetrievalResult nse : eval) {
-            // ovde ide kod za verovatnocu
-            System.out.println(nse.get_case().getDescription() + " -> " + nse.getEval());
+            String caseComp = nse.get_case().getDescription().toString();
+            String[] split = caseComp.split("=>");
+
+            if (finalResults.containsKey(split[1]))
+                continue;
+            else
+                finalResults.put(split[1], nse);
+
         }
+
+        for (Map.Entry<String,RetrievalResult> entry : finalResults.entrySet())
+            System.out.println(entry.getValue().get_case().getDescription() + " -> " + entry.getValue().getEval()*100+"%");
+
+
+
 
     }
 
