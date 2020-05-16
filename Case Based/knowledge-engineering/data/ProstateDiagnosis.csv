@@ -1,0 +1,9 @@
+# disease, psa, dre, prostate_biopsy, cystoscopy, urodynacmis,urinalysis,ultrasound, ct_scan
+prostate_cancer_stage1,high,abnormal shape and thickness,cancer cells, gleason 7,,,,,stage 1
+prostate_cancer_stage2,high,abnormal shape and thickness,cancer cells gleason 8,,,,,stage 2
+prostate_cancer_stage3,high,abnormal shape and thickness,cancer cells gleason 9,,,,,stage 3
+prostate_cancer_stage4,high,abnormal shape and thickness,cancer cells gleason 10,,,,,stage 4
+advanced_prostate_cancer,high,abnormal shape and thickness,cancer cells gleason 10,,,,,stage 4
+bacterial_infection_prostatitis,,enlarged and tender,,bad,good urin flow,bacteria,bad,
+chronic_nonbacteria_prostatitis,,enlarged or tender,,bad,bad urin flow,not inflamed prostate,bad,
+asymptomatic_inflammatory_prostatitis,,enlarged or tender,,bad,good urin flow,inflamed prostate,bad,

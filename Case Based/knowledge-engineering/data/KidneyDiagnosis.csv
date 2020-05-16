@@ -1,0 +1,6 @@
+# disease, cat_scan,kidney_biopsy,urinalysis,liver_function_test,ivp,ultrasound,mri,blood_test_chemistry,x_rays
+kidney_cancer_stage1,cancer tissue small size,renal cell cancer,unusual levels of some substances,unusual enzymes levels,cancer cells stage 1,cancer cells,abnormal growth of tissue,high or low substance values,
+kidney_stones,stones,,,,,stones,,,stones in kidney
+kidney_cancer_stage2,cancer tissue 7cm size no lymph,renal cell cancer,unusual levels of some substances,unusual enzymes levels,cancer cells stage 2,cancer cells,abnormal growth of tissue,high or low substance values,
+kidney_cancer_stage3,cancer tissue stage 3,renal cell cancer,unusual levels of some substances,unusual enzymes levels,cancer cells stage 3,cancer cells,abnormal growth of tissue,high or low substance values,
+kidney_cancer_stage4,cancer tissue stage 4,renal cell cancer,unusual levels of some substances,unusual enzymes levels,cancer cells stage 4,cancer cells,abnormal growth of tissue,high or low substance values,

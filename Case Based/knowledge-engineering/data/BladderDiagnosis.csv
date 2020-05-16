@@ -1,0 +1,10 @@
+# disease, urology_examination, bladder_biopsy,liver_function_test,blood_test_chemistry,urodynamics, cystoscopy,x_rays,ultrasound,mri, urine_cytology,cat_scan,rigid_cystoscopy
+bladder_cancer_stageTA,BAD,bladder cancer cells,bad,bad,,TA,,,TA,cancer,TA,TA
+bladder_cancer_stageTIS,BAD,bladder cancer cells,bad,bad,,TIS,,,TIS,cancer,TIS,TIS
+bladder_cancer_stageT1,BAD,bladder cancer cells,bad,bad,,T1,,,T1,cancer,T1,T1
+bladder_cancer_stageT2,BAD,bladder cancer cells,bad,bad,,T2,,,T2,cancer,T2,T2
+bladder_cancer_stageT3,BAD,bladder cancer cells,bad,bad,,T3,,,T3,cancer,T3,T3
+bladder_cancer_stageT4,BAD,bladder cancer cells,bad,bad,,T4,,,T4,cancer,T3,T4
+bladder_cancer_gradeLOW,BAD,bladder cancer cells,bad,bad,,LOW,,,LOW,cancer,LOW,LOW
+bladder_cancer_gradeHIGH,BAD,bladder cancer cells,bad,bad,,HIGH,,,HIGH,cancer,HIGH,HIGH
+bladder_prolapse,,,,,bad blood,bad pelvic floor,bad pelvic floor,bad pelvic floor,bad pelvic floor,,,
