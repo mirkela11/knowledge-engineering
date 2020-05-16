@@ -202,26 +202,26 @@ percutaneous_nephrolithotomy(X) :- stones_in_kidneys(X,Y),Y=yes,
 
 %-------------------------------------------------------------------------------------------------------------------------------------------------------------Kidney Cancer
 
-radiofrequency_ablatation(X) :- renal_stage_1(X).
+radiofrequency_ablatation(X) :- kidney_cancer_stage1(X).
 
-cryoablatation(X) :- renal_stage_1(X).
+cryoablatation(X) :- kidney_cancer_stage1(X).
 
 radical_nephrectomy(X) :- no_health_issues(X),
-                         (renal_stage_1(X);renal_stage_2(X);renal_stage_3(X);renal_stage_4(X)).
+                         (kidney_cancer_stage1(X);kidney_cancer_stage2(X);kidney_cancer_stage3(X);kidney_cancer_stage4(X)).
 
-partial_nephrectomy(X) :- renal_stage_1(X);
-                          renal_stage_2(X).
+partial_nephrectomy(X) :- kidney_cancer_stage1(X);
+                          kidney_cancer_stage2(X).
 
-radiation_therapy(X) :- health_issues(X),
-                        (renal_stage_1(X);renal_stage_2(X);renal_stage_3(X);renal_stage_4(X)).
+radiation_therapy(X) :-  health_issues(X),
+                        (kidney_cancer_stage1(X);kidney_cancer_stage2(X);kidney_cancer_stage3(X);kidney_cancer_stage4(X)).
 
-arterial_embolazation(X) :- renal_stage_1(X);
-                            renal_stage_2(X);
-                            renal_stage_3(X).
+arterial_embolazation(X) :- kidney_cancer_stage1(X);
+                            kidney_cancer_stage2(X);
+                            kidney_cancer_stage3(X).
 
-targeted_therapy(X) :- renal_stage_4(X).
+targeted_therapy(X) :- kidney_cancer_stage4(X).
 
-biologic_therapy(X) :- renal_stage_4(X).
+biologic_therapy(X) :- kidney_cancer_stage4(X).
 
 
 
