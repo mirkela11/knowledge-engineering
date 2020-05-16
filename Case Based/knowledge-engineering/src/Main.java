@@ -1,11 +1,13 @@
-import cbr.SuppTestCbrApplication;
+import cbr.TherapyCbrApplication;
 
 import java.util.Arrays;
 
 public class Main {
 
     public static void main(String[] args) {
-        SuppTestCbrApplication suppTestCbrApplication = new SuppTestCbrApplication();
-        suppTestCbrApplication.run(Arrays.asList("anemia", "pain_penis_tip", "pain_or_burning_while_urinating", "painful_ejaculation", "fever", "pain_vagina"));
+        /*SuppTestCbrApplication suppTestCbrApplication = new SuppTestCbrApplication();
+        suppTestCbrApplication.run(Arrays.asList("anemia", "pain_penis_tip", "pain_or_burning_while_urinating", "painful_ejaculation", "fever", "pain_vagina"));*/
+        TherapyCbrApplication therapyCbrApplication = new TherapyCbrApplication();
+        therapyCbrApplication.run(Arrays.asList("prostate_cancer_stage2"));
     }
 }
