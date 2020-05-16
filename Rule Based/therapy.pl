@@ -7,47 +7,47 @@ adolescent(X) :- age(X,Y), Y=<19, Y>=13.
 adult(X) :- age(X,Y), Y<55, Y>=20.
 elder(X) :- age(X,Y), Y>=55.
 
-prostate_cancer_stage1(X) :- tumor_size(X,Y), Y = very_small, blood_test(X,Y), Y=very_low.
-prostate_cancer_stage2(X) :- tumor_size(X,Y), Y = small, blood_test(X,Y), Y=low.
-prostate_cancer_stage3(X) :- tumor_size(X,Y), Y = intermediate, blood_test(X,Y), Y=intermediate.
-prostate_cancer_stage4(X) :- tumor_size(X,Y), Y = big, blood_test(X,Y), Y=high.
+%prostate_cancer_stage1(X) :- tumor_size(X,Y), Y = very_small, blood_test(X,Y), Y=very_low.
+%prostate_cancer_stage2(X) :- tumor_size(X,Y), Y = small, blood_test(X,Y), Y=low.
+%prostate_cancer_stage3(X) :- tumor_size(X,Y), Y = intermediate, blood_test(X,Y), Y=intermediate.
+%prostate_cancer_stage4(X) :- tumor_size(X,Y), Y = big, blood_test(X,Y), Y=high.
 
 %--------------------------------------------------------------------------------------------------------------------Prostate cancer
 %therapies
-surveillance(X) :-  tumor_type(X,Y), Y=benign,
+surveillance(X) :-  male(X),tumor_type(X,Y), Y=benign,
                    (prostate_cancer_stage1(X); prostate_cancer_stage2(X));
                    (adult(X); elder(X)).
 
-radical_surgery(X) :-  other_health_issues(X,Y), Y=no, 
+radical_surgery(X) :-   male(X),no_health_issues(X), 
                       (prostate_cancer_stage1(X); prostate_cancer_stage2(X); prostate_cancer_stage3(X));
                       (adult(X); elder(X)).
 
-radiation(X) :-  other_health_issues(X,Y), Y=no,
+radiation(X) :-   male(X),no_health_issues(X),
                 (prostate_cancer_stage2(X); prostate_cancer_stage3(X); prostate_cancer_stage4(X));
                 (adult(X); elder(X)).
 
 
-focal_therapy(X):- (prostate_cancer_stage1(X); prostate_cancer_stage2(X));
+focal_therapy(X):-  male(X),(prostate_cancer_stage1(X); prostate_cancer_stage2(X));
                    (adult(X); elder(X)).
 
-cryotherapy(X) :-  other_health_issues(X,Y), Y=yes,
+cryotherapy(X) :-   male(X),health_issues(X),
                   (prostate_cancer_stage1(X); prostate_cancer_stage2(X));
                   (adult(X); elder(X)).
 
 %--posle radijacije se preporucuje ili sa radijaciom
-hormonal_therapy(X) :- (prostate_cancer_stage2(X); prostate_cancer_stage3(X); prostate_cancer_stage4(X));
+hormonal_therapy(X) :-  male(X),(prostate_cancer_stage2(X); prostate_cancer_stage3(X); prostate_cancer_stage4(X));
                        (adult(X); elder(X)).
 
 
-chemotherapy(X):-  prostate_cancer_stage4(X),
+chemotherapy(X):-   male(X),prostate_cancer_stage4(X),
                   (adult(X); elder(X)).
 
 %--posle hemoterapije se preporucuje ili sa hemoterapijom
-immunotherapy(X) :- ( prostate_cancer_stage1(X); prostate_cancer_stage2(X);prostate_cancer_stage3(X);prostate_cancer_stage4(X));
+immunotherapy(X) :-  male(X),( prostate_cancer_stage1(X); prostate_cancer_stage2(X);prostate_cancer_stage3(X);prostate_cancer_stage4(X));
                     (adult(X); elder(X)).
 
 %-- sa hormonal_therapy
-bone_targeted_therapy(X) :- (prostate_cancer_stage3(X);prostate_cancer_stage4(X)),
+bone_targeted_therapy(X) :-  male(X),(prostate_cancer_stage3(X);prostate_cancer_stage4(X)),
                             (adult(X); elder(X)).
 
 %--------------------------------------------------------------------------------------------------------------------------Non-Muscle Invasive Bladder Cancer
@@ -71,20 +71,20 @@ cystoscopy_and_immunotherapy(X) :- elder(X),
                                    bladder_cancer_stage(X,Y),Y=tis.
 
 immunotherapy(X) :- elder(X),
-                    (health(X,Y), Y=not_good,
+                    (health_issues(X),
                     ((bladder_cancer_grade(X,Y), Y=low,cancer_removed(X,Y),Y=yes);
                     (bladder_cancer_grade(X,Y), Y=high)), bladder_cancer_stage(X,Y), Y=t1);
                      bladder_cancer_stage(X,Y), Y=t4.
 
 chemotherapy(X) :-  elder(X),
-                   (health(X,Y),Y=good,
+                   (no_health_issues(X),
                    ((bladder_cancer_grade(X,Y), Y=low,cancer_removed(X,Y),Y=no);
                    (bladder_cancer_grade(X,Y), Y=high)));
                    bladder_cancer_stage(X,Y), Y=t4.
 
 surgery(X) :- elder(X),
               bladder_cancer_stage(X,Y), Y=t1,
-              health(X,Y),Y=good,
+              no_health_issues(X),
               bladder_cancer_grade(X,Y), Y=high.
 
 cystoscopy_chemotherapy_surgery(X) :- elder(X),
@@ -96,19 +96,19 @@ immunotherapy_chemotherapy_surgery(X) :- elder(X),
 %---------------------------------------------------------------------------------------------------------------------------------------------Bladder Prolapse
 kegel_exercise(X) :- female(X),
                      prolapse_bladder_grade(X,Y), (Y=mild;Y=moderate),
-                    (adolelescent(X);adult(X);elder(X)).
+                    (adolescent(X);adult(X);elder(X)).
 
 pessary(X) :- female(X),
               prolapse_bladder_grade(X,Y), (Y=moderate;Y=severe),
-             (adolelescent(X);adult(X);elder(X)).
+             (adolescent(X);adult(X);elder(X)).
 
 estrogen_replacement_therapy(X) :- female(X),
                                    prolapse_bladder_grade(X,Y), Y=severe,
-                                   (adolelescent(X);adult(X);elder(X)).
+                                   (adolescent(X);adult(X);elder(X)).
 
 bladder_surgery(X) :- female(X),
                       prolapse_bladder_grade(X,Y), Y=complete,
-                      (adolelescent(X);adult(X);elder(X)).
+                      (adolescent(X);adult(X);elder(X)).
 
 %-------------------------------------------------------------------------------------------------------------------------------------------Hematuria
 
@@ -119,15 +119,15 @@ shock_waves_therapy(X) :- red_blood_cells_in_urine(X,Y), Y=yes, ((stones_in_kidn
 %-----------------------------------------------------------------------------------------------------------------------------------------Infection of the Prostate(Prostatitis)
 
 tmp_smx_antibiotic(X) :-  male(X),
-                         (acute_bacterial_infection_prostatitis(X,Y),Y=yes);
-                         (chronic_bacterial_infection_prostatitis(X,Y),Y=yes).
+                         bacterial_infection_prostatitis(X,Y),Y=yes.
+                      
 
 %najvise se preporucuje tmp-smx antibiotik
 doxycycline_antibiotic :- male(X),
-                          acute_bacterial_infection_prostatitis(X,Y),Y=yes.
+                          bacterial_infection_prostatitis(X,Y),Y=yes.
 
 horfloxacin_antibiotic(X) :- male(X),
-                             chronic_bacterial_infection_prostatitis(X,Y),Y=yes.
+                             bacterial_infection_prostatitis(X,Y),Y=yes.
 
 %vise se preporucuje doxycycline
 doxycycline_with_anti_inflammatory_drugs_and_prostate_massage(X) :- male(X),
@@ -206,13 +206,13 @@ radiofrequency_ablatation(X) :- renal_stage_1(X).
 
 cryoablatation(X) :- renal_stage_1(X).
 
-radical_nephrectomy(X) :- health(X,Y),Y=good,
+radical_nephrectomy(X) :- no_health_issues(X),
                          (renal_stage_1(X);renal_stage_2(X);renal_stage_3(X);renal_stage_4(X)).
 
 partial_nephrectomy(X) :- renal_stage_1(X);
                           renal_stage_2(X).
 
-radiation_therapy(X) :- health(X,Y),Y=not_good,
+radiation_therapy(X) :- health_issues(X),
                         (renal_stage_1(X);renal_stage_2(X);renal_stage_3(X);renal_stage_4(X)).
 
 arterial_embolazation(X) :- renal_stage_1(X);
