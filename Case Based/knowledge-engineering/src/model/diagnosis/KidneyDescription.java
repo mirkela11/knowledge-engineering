@@ -13,7 +13,7 @@ public class KidneyDescription implements CaseComponent {
     private String ultrasound;
     private String mri;
     private String physicalExam;
-    private String blood_test_chemistry;
+    private String bloodTestChemistry;
     private String xRays;
 
     public String getDiagnosis() {
@@ -88,12 +88,12 @@ public class KidneyDescription implements CaseComponent {
         this.physicalExam = physicalExam;
     }
 
-    public String getBlood_test_chemistry() {
-        return blood_test_chemistry;
+    public String getBloodTestChemistry() {
+        return bloodTestChemistry;
     }
 
-    public void setBlood_test_chemistry(String blood_test_chemistry) {
-        this.blood_test_chemistry = blood_test_chemistry;
+    public void setBloodTestChemistry(String bloodTestChemistry) {
+        this.bloodTestChemistry = bloodTestChemistry;
     }
 
     public String getxRays() {

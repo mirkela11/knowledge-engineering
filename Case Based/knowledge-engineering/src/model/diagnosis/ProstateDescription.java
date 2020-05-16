@@ -12,6 +12,15 @@ public class ProstateDescription implements CaseComponent {
     private String urodynamics;
     private String urinalysis;
     private String ultrasound;
+    private String ctScan;
+
+    public String getCtScan() {
+        return ctScan;
+    }
+
+    public void setCtScan(String ctScan) {
+        this.ctScan = ctScan;
+    }
 
     public String getDiagnosis() {
         return diagnosis;

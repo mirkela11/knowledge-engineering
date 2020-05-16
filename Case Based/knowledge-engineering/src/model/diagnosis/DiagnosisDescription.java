@@ -3,7 +3,7 @@ package model.diagnosis;
 import ucm.gaia.jcolibri.cbrcore.Attribute;
 import ucm.gaia.jcolibri.cbrcore.CaseComponent;
 
-public class DiseaseDescription implements CaseComponent {
+public class DiagnosisDescription implements CaseComponent {
     private String diagnosis;
     private String urinalysis;
     private String physicalExam;

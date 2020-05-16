@@ -6,8 +6,8 @@ import ucm.gaia.jcolibri.cbrcore.CaseComponent;
 public class BladderDescription implements CaseComponent {
     private String diagnosis;
     private String urologyExamination;
-    private String bladder_biopsy;
-    private String liver_function_test;
+    private String bladderBiopsy;
+    private String liverFunctionTest;
     private String ivp;
     private String physicalExam;
     private String bloodTestChemistry;
@@ -36,20 +36,20 @@ public class BladderDescription implements CaseComponent {
         this.urologyExamination = urologyExamination;
     }
 
-    public String getBladder_biopsy() {
-        return bladder_biopsy;
+    public String getBladderBiopsy() {
+        return bladderBiopsy;
     }
 
-    public void setBladder_biopsy(String bladder_biopsy) {
-        this.bladder_biopsy = bladder_biopsy;
+    public void setBladderBiopsy(String bladderBiopsy) {
+        this.bladderBiopsy = bladderBiopsy;
     }
 
-    public String getLiver_function_test() {
-        return liver_function_test;
+    public String getLiverFunctionTest() {
+        return liverFunctionTest;
     }
 
-    public void setLiver_function_test(String liver_function_test) {
-        this.liver_function_test = liver_function_test;
+    public void setLiverFunctionTest(String liverFunctionTest) {
+        this.liverFunctionTest = liverFunctionTest;
     }
 
     public String getIvp() {
